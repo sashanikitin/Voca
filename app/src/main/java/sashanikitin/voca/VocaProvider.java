@@ -46,12 +46,12 @@ public class VocaProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         // TODO: Implement this to handle requests to insert a new row.
-        if (values.containsKey("Story")) {
-            Story story = new Story(values.getAsString("Story"));
+        if (values.containsKey(Story.STORY)) {
+            Story story = new Story(values.getAsString(Story.STORY));
             db.storyDao().insertStory(story);
         } else {
-            Word word = new Word(values.getAsString("Word"), values.getAsString("Meaning"),
-                    values.getAsInteger("Rate"));
+            Word word = new Word(values.getAsString(Word.WORD), values.getAsString(Word.MEANING),
+                    values.getAsInteger(Word.RATE));
             db.wordDao().insertWord(word);
         }
         return null;

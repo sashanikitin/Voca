@@ -12,11 +12,12 @@ public class Word {
     static final public String WORD = "Word";
     static final public String MEANING = "Meaning";
     static final public String RATE = "Rate";
-    @PrimaryKey
-    @NonNull
+
     @ColumnInfo(name = "date")
     public String date;
 
+    @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "word")
     String word;
 
@@ -33,8 +34,6 @@ public class Word {
         date = java.text.DateFormat.
                 getDateTimeInstance().format(new Date(System.currentTimeMillis()));
     }
-
-
 
     public String getWord() {
         return word;
