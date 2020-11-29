@@ -18,9 +18,12 @@ import sashanikitin.voca.db.VocaDB;
 import sashanikitin.voca.db.Word;
 
 public class VocaProvider extends ContentProvider {
+
+    public static final String STORIES = "stories";
+    public static final String WORDS = "words";
+
     final static public Uri URI = Uri
             .parse("content://sashanikitin.voca");
-
     private VocaDB db;
 
     public VocaProvider() {
@@ -64,18 +67,22 @@ public class VocaProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        getAllStories();
-        getAllWords();
-        getStoryAndWords(selection);
-        return null;
+        Log.i("SAS", "sas");
+        switch (selection) {
+            case STORIES:
+                return getAllStories();
+            case WORDS:
+                return getAllWords();
+        }
+        return getAllStories();
     }
 
     private Cursor getAllStories() {
-        return null;
+        return db.storyDao().findAllCursor();
     }
 
     private Cursor getAllWords() {
-        return null;
+        return db.wordDao().findAllCursor();
     }
 
     private Cursor getStoryAndWords(String selection) {

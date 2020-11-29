@@ -2,10 +2,13 @@ package sashanikitin.voca.db;
 
 import android.content.Context;
 import androidx.room.Database;
+import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 @Database(entities = {Story.class, Word.class}, version = 2)
+
 public abstract class VocaDB extends RoomDatabase {
     private static VocaDB INSTANCE;
 
@@ -20,6 +23,7 @@ public abstract class VocaDB extends RoomDatabase {
                 INSTANCE =
                         Room.databaseBuilder(context.getApplicationContext(), VocaDB.class, "vocadb")
                                 .fallbackToDestructiveMigration()
+                                .allowMainThreadQueries()
                                 .build();
             }
         }
@@ -48,4 +52,9 @@ public abstract class VocaDB extends RoomDatabase {
 
 
 
+
+    @Override
+    protected InvalidationTracker createInvalidationTracker() {
+        return null;
+    }
 }

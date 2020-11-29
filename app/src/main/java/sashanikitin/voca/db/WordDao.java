@@ -19,4 +19,6 @@ public interface WordDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     public void insertWord(Word word);
 
+    @Query("SELECT * From word  ORDER BY date ")
+    public Cursor findAllCursor();
 }

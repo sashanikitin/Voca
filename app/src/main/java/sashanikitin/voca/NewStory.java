@@ -2,7 +2,7 @@ package sashanikitin.voca;
 
 import android.content.ContentValues;
 import android.graphics.Color;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-
 import sashanikitin.voca.db.Story;
-import sashanikitin.voca.db.VocaDB;
 import sashanikitin.voca.db.Word;
 
 public class NewStory extends AppCompatActivity implements View.OnClickListener {
 
-    int[] colors = new int[2];
+    public static int[] colors = new int[]{Color.parseColor("#43b020"),
+        Color.parseColor("#FF6700")};
+
     LinearLayout linLayout;
     LayoutInflater ltInflater;
 
@@ -31,9 +29,6 @@ public class NewStory extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_story_new_word);
-
-        colors[0] = Color.parseColor("#559966CC");
-        colors[1] = Color.parseColor("#55336699");
 
         linLayout = (LinearLayout) findViewById(R.id.newWordLin);
         Button addWord = findViewById(R.id.add_word);
@@ -93,9 +88,9 @@ public class NewStory extends AppCompatActivity implements View.OnClickListener 
 
     private void addItem() {
         View item = ltInflater.inflate(R.layout.new_word_item, linLayout, false);
-        TextView tvName = (TextView) item.findViewById(R.id.tvName);
-        TextView tvPosition = (TextView) item.findViewById(R.id.tvPosition);
-        TextView tvSalary = (TextView) item.findViewById(R.id.tvSalary);
+        TextView word = (TextView) item.findViewById(R.id.word);
+        TextView meaning = (TextView) item.findViewById(R.id.meaning);
+        TextView rate = (TextView) item.findViewById(R.id.rate);
         item.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
         item.setBackgroundColor(colors[color ? 0 : 1]);
         color = !color;

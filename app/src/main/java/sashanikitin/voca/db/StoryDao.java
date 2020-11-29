@@ -18,4 +18,16 @@ public interface StoryDao {
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
     public void insertStory(Story story);
+
+    /**
+     * findByAllSubscribedCursor.
+     *
+     */
+    @Query("SELECT( SELECT COUNT(*) + 1" +
+            " FROM story WHERE date < t.date OR (date = t.date )) as _id, story," +
+            " date From story t ORDER BY t.date ")
+    public Cursor findAllWithNumberCursor();
+
+    @Query("SELECT * From story  ORDER BY date ")
+    public Cursor findAllCursor();
 }
