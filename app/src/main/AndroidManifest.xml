@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sashanikitin.voca">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,16 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".NewStory"
-            android:label="@string/title_activity_new_story"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/title_activity_new_story">
             <intent-filter>
                 <action android:name="android.intent.action.new_story" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".ScrollingWords"
             android:label="@string/title_activity_scrolling_words"
@@ -50,16 +52,7 @@
             android:name=".DBIntentService"
             android:exported="false" />
 
-        <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.WillBeMAIN" />
 
-                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
